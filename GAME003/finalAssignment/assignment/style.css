@@ -1,0 +1,23 @@
+body {
+	background-color: #000000;
+}
+
+#top
+{
+	color: white;
+	height: 50px;
+	alignment: center;
+	position: fixed;
+	margin-left:100px;
+
+}
+
+#stage
+{
+	width:700px;
+	height:600px;
+	border:2px solid black;
+	background-image:url("images/space.jpg");
+	margin:auto;
+	position:relative;
+}
