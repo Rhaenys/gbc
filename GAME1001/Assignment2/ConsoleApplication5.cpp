@@ -56,20 +56,25 @@ playerdata player[50];
 
 int main()
 {
-	
-
 	newPlayer();
-	showHighScore();
-	playRPS();
+	while (validMenuSelection() != 4)
+	{ 
+		
+		
+
+		while (validMenuSelection() == 3)
+		{
+			cout << "Here is players rank:" << endl;
+			cout << "Rank" << "          " << "Player Name" << "          " << "No of Wins" << endl;
+			for (int i = 1; i < 6; i++)
+			{
+				cout << i << "               " << player[i].playerName << "                       " << player[i].score << endl;
+			}
+			cout << endl;
+		}
+	}
 	
-
-	
-
-
-	//displayResults(gameCount, winCount1, winCount2);
-
-	//return 0;
-	
+	return 0;	
 }
 
 void newPlayer()
@@ -81,8 +86,8 @@ void newPlayer()
 
 int validMenuSelection()
 {
-	while (menuCycle == true)
-	{ 
+	//while (menuCycle == true)
+	//{ 
 		cout << "1. Start the Game" << endl << "2. Change the player name" << endl << "3. Show highest scores" << endl << "4. Exit" << endl;
 		cout << "What do you wanna do now?" << endl;
 		int menuSelection;
@@ -90,20 +95,19 @@ int validMenuSelection()
 		switch (menuSelection)
 		{
 		case 1:
-			menuCycle = true;
-			return 1;
+			playRPS();
+			//return 1;
 		case 2:
 			newPlayer();
-			menuCycle = true;
+			//menuCycle = true;
 		case 3:
 			return 3;
 		case 4:
 			return 4;
 		default:
-			return 0;
-			cout << "1-4 Only" << endl;
+			cout << "1-4 Only" << endl;	
 		}
-	}
+	//}
 }
 
 void playRPS()
@@ -165,16 +169,7 @@ bool validSelection(char selection)
 
 void showHighScore()
 {
-	//while (validMenuSelection() == 3)
-	//{
-		cout << "Here is players rank:" << endl;
-		cout << "Rank" << "          " << "Player Name" << "          " << "No of Wins" << endl;
-		for (int i = 1; i < 6; i++)
-		{
-			cout << i << "               " << player[i].playerName << "                       " << player[i].score << endl;
-		}
-		cout << endl;
-	//}
+	
 }
 
 objectType retrievePlay(char selection)
