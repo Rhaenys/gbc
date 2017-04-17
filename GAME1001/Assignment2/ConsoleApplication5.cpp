@@ -1,5 +1,7 @@
-// ConsoleApplication1.cpp : Defines the entry point for the console application.
-//
+/*
+Student Name: Excelle Escalada
+Student Number: 101096067
+*/
 
 #include "stdafx.h"
 #include <iostream>
@@ -11,8 +13,6 @@ using namespace std;
 
 enum objectType { ROCK, PAPER, SCISSORS };
 
-int numOfPlayers = 5;
-void displayRules();
 bool validSelection(char selection);
 int validMenuSelection();
 objectType retrievePlay(char selection);
@@ -20,7 +20,31 @@ void convertEnum(objectType object);
 objectType winningObject(objectType play1, objectType play2);
 void gameResult(objectType play1, objectType play2, int& winner);
 void displayResults(int gCount, int wCount1, int wCount2);
-int i;
+void newPlayer();
+void showHighScore();
+int i = 0;
+void playRPS();
+bool menuCycle = true;
+
+
+
+int gameCount;
+int winCount1 = 0;
+int winCount2 = 0;
+
+int gamewinner;
+char response;
+
+char selection1;
+int randComPlay;
+char selection2;
+
+objectType play1;
+objectType play2;
+
+//gameCount = 0;
+//winCount1 = 0;
+//winCount2 = 0;
 
 struct playerdata
 {
@@ -32,43 +56,60 @@ playerdata player[50];
 
 int main()
 {
-	/* for (int i = 0; i < numOfPlayers; i++)
-	{
-		cout << "Enter Name: " << endl;
-		cin >> player[i].playerName;
-		player[i].score = 0;
+	
 
-		cout << "Player: " << player[i].playerName << " Score: " << player[i].score << endl;
+	newPlayer();
+	showHighScore();
+	playRPS();
+	
+
+	
+
+
+	//displayResults(gameCount, winCount1, winCount2);
+
+	//return 0;
+	
+}
+
+void newPlayer()
+{
+	i++;
+	cout << "Enter your name: ";
+	cin >> player[i].playerName;
+}
+
+int validMenuSelection()
+{
+	while (menuCycle == true)
+	{ 
+		cout << "1. Start the Game" << endl << "2. Change the player name" << endl << "3. Show highest scores" << endl << "4. Exit" << endl;
+		cout << "What do you wanna do now?" << endl;
+		int menuSelection;
+		cin >> menuSelection;
+		switch (menuSelection)
+		{
+		case 1:
+			menuCycle = true;
+			return 1;
+		case 2:
+			newPlayer();
+			menuCycle = true;
+		case 3:
+			return 3;
+		case 4:
+			return 4;
+		default:
+			return 0;
+			cout << "1-4 Only" << endl;
+		}
 	}
-	*/
-	// player[x].playerName = 
-	
-	int gameCount;
-	int winCount1;
-	int winCount2;
+}
 
-	int gamewinner;
-	char response;
-
-	char selection1;
-	int randComPlay;
-	char selection2;
-
-	objectType play1;
-	objectType play2;
-
-	gameCount = 0;
-	winCount1 = 0;
-	winCount2 = 0;
-
-	displayRules();
-
-	validMenuSelection();
-	
+void playRPS()
+{
 	while (validMenuSelection() == 1)
 	{
-		cout << "Enter your name: ";
-		cin >> player[i].playerName;
 		cout << "Welcome " << player[i].playerName << "." << endl;
 		response = 'Y';
 		while (response == 'Y' || response == 'y')
@@ -83,7 +124,7 @@ int main()
 				selection2 = 'R';
 			else if (randComPlay == 1)
 				selection2 = 'P';
-			else 
+			else
 				selection2 = 'S';
 
 			if (validSelection(selection1) && validSelection(selection2))
@@ -104,40 +145,6 @@ int main()
 
 		}
 	}
-
-	displayResults(gameCount, winCount1, winCount2);
-
-	return 0;
-}
-
-void displayRules()
-{
-	cout << "Welcome to the Game" << endl;
-	cout << "Rules" << endl;
-}
-
-
-int validMenuSelection()
-{
-	cout << "1. Start the Game" << endl << "2. Change the player name" << endl << "3. Show highest scores" << endl << "4. Exit" << endl;
-	cout << "What do you wanna do now?" << endl;
-	int menuSelection;
-	cin >> menuSelection;
-	switch (menuSelection)
-	{
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	default:
-		return 0;
-		cout << "1-4 Only" << endl;
-		//return false;
-	}
 }
 
 bool validSelection(char selection)
@@ -154,6 +161,20 @@ bool validSelection(char selection)
 	default:
 		return false;
 	}
+}
+
+void showHighScore()
+{
+	//while (validMenuSelection() == 3)
+	//{
+		cout << "Here is players rank:" << endl;
+		cout << "Rank" << "          " << "Player Name" << "          " << "No of Wins" << endl;
+		for (int i = 1; i < 6; i++)
+		{
+			cout << i << "               " << player[i].playerName << "                       " << player[i].score << endl;
+		}
+		cout << endl;
+	//}
 }
 
 objectType retrievePlay(char selection)
@@ -227,13 +248,12 @@ void gameResult(objectType play1, objectType play2, int& winner)
 		{
 			player[i].score++;
 			cout << endl;
-			cout << player[i].playerName << " wins this game. You now have " << player[i].score << " points."<<endl
-				;
+			cout << player[i].playerName << " wins this game. You now have " << player[i].score << " points." << endl;
 			//winner = 1;
 		}
 		else if (play2 == winnerObject)
 			//winner = 2;
-			cout << "I won this game." << endl;
+			cout << " I won this game." << endl;
 	}
 }
 
