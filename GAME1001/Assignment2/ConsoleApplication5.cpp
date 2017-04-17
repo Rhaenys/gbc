@@ -19,13 +19,11 @@ objectType retrievePlay(char selection);
 void convertEnum(objectType object);
 objectType winningObject(objectType play1, objectType play2);
 void gameResult(objectType play1, objectType play2, int& winner);
-void displayResults(int gCount, int wCount1, int wCount2);
 void newPlayer();
 void showHighScore();
 int i = 0;
 void playRPS();
 bool menuCycle = true;
-
 
 
 int gameCount;
@@ -42,10 +40,6 @@ char selection2;
 objectType play1;
 objectType play2;
 
-//gameCount = 0;
-//winCount1 = 0;
-//winCount2 = 0;
-
 struct playerdata
 {
 	string playerName;
@@ -57,23 +51,8 @@ playerdata player[50];
 int main()
 {
 	newPlayer();
-	while (validMenuSelection() != 4)
-	{ 
-		
-		
-
-		while (validMenuSelection() == 3)
-		{
-			cout << "Here is players rank:" << endl;
-			cout << "Rank" << "          " << "Player Name" << "          " << "No of Wins" << endl;
-			for (int i = 1; i < 6; i++)
-			{
-				cout << i << "               " << player[i].playerName << "                       " << player[i].score << endl;
-			}
-			cout << endl;
-		}
-	}
-	
+	playRPS();
+	showHighScore();
 	return 0;	
 }
 
@@ -95,8 +74,8 @@ int validMenuSelection()
 		switch (menuSelection)
 		{
 		case 1:
-			playRPS();
-			//return 1;
+
+			return 1;
 		case 2:
 			newPlayer();
 			//menuCycle = true;
@@ -146,7 +125,6 @@ void playRPS()
 			cout << "Do you wanna play again? Y/y or N/n ";
 			cin >> response;
 			cout << endl;
-
 		}
 	}
 }
@@ -169,7 +147,16 @@ bool validSelection(char selection)
 
 void showHighScore()
 {
-	
+	while (validMenuSelection() == 3)
+	{
+		cout << "Here is players rank:" << endl;
+		cout << "Rank" << "          " << "Player Name" << "          " << "No of Wins" << endl;
+		for (int i = 1; i < 6; i++)
+		{
+			cout << i << "               " << player[i].playerName << "                       " << player[i].score << endl;
+		}
+		cout << endl;
+	}
 }
 
 objectType retrievePlay(char selection)
@@ -250,11 +237,4 @@ void gameResult(objectType play1, objectType play2, int& winner)
 			//winner = 2;
 			cout << " I won this game." << endl;
 	}
-}
-
-void displayResults(int gCount, int wCount1, int wCount2)
-{
-	cout << "The total number of plays: " << gCount << endl;
-	cout << "The number of plays won by player 1: " << wCount1 << endl;
-	cout << "The number of plays won by player 2: " << wCount2 << endl;
 }
