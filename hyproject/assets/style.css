@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+
+#header{
+    padding-top: 50px;
+    border: 1px solid #9b9b9b;
+    margin-top: 50px;
+    height: auto;
+}
+
+#logo{
+    float: left;
+    border: 1px solid red;
+}
+
+#menu{
+    font-family: 'Josefin Sans', sans-serif;
+    border: 1px solid blue;
+    float: right;
+}
+
+#headimg{
+}
